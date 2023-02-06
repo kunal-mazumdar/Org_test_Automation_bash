@@ -1,0 +1,48 @@
+template: true
+valuesFilePath: ../values/gitRepoValues.yml
+
+resources:
+  - name: S_Bash_Tasks_11435_01_repo
+    type: GitRepo
+    configuration:
+      gitProvider: s_gitHub
+      path: {{ .Values.GitHub.Org_test_Automation_bash.path }}
+      branches:
+        include: {{ gitBranch }}
+
+pipelines:
+  - name: S_Bash_Tasks_11435_01_pipeline
+    configuration:
+      jfrogCliVersion: 2
+    steps:
+      - name: S_Bash_Tasks_11435_01_step
+        type: Bash
+        configuration:
+          integrations:
+            - name: s_artifactory
+          inputResources:
+            - name: S_Bash_Tasks_11435_01_repo
+              trigger: false
+        execution:
+          onStart:
+            - mkdir -p "$step_tmp_dir/task"
+            - cp -r ${res_S_Bash_Tasks_11435_01_repo_resourcePath}/tests/tasks/hello/* $step_tmp_dir/task/
+            - pushd $step_tmp_dir/
+            - jf rt u "task/*" "test-automation-tasks-local/jfrog/hello-bash-11435/@v/v1.1.1.zip" --archive zip
+            - jf rt u "task/*" "test-automation-tasks-local/jfrog/hello-bash-11435/@v/v1.1.2.zip" --archive zip
+            - popd
+            - rm -rf "$step_tmp_dir/task"
+          onExecute:
+            - task: jfrog/hello-bash-11435@latest
+              repository: test-automation-tasks-local
+              id: S_Bash_Tasks_11435_01_task
+              input:
+                target: "execute latest"
+            - echo "checking task OUT"
+          onComplete:
+            - echo "on Complete"
+            - jf rt del "test-automation-tasks-local/jfrog/hello-bash-11435/@v/v1.1.1.zip" || true
+            - jf rt del "test-automation-tasks-local/jfrog/hello-bash-11435/@v/v1.1.2.zip" || true
+          onSuccess:
+            - echo "on Success"
+

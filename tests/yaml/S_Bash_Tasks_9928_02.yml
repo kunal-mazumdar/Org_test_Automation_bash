@@ -48,6 +48,7 @@ pipelines:
               id: S_Bash_Tasks_9928_02_task
               input:
                 taskPath: jfrog/hello@${taskVersion}
+                taskRepo: test-automation-tasks-local
             - end_step failure
           onComplete:
             - echo "on Complete"

@@ -48,6 +48,7 @@ pipelines:
               id: S_Bash_Tasks_9928_01_task
               input:
                 taskPath: jfrog/hello@${taskVersion}
+                taskRepo: test-automation-tasks-local
           onComplete:
             - echo "on Complete"
           onSuccess:

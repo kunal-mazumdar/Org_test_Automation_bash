@@ -7,7 +7,7 @@ input:
 execution:
   - task: ${IN_taskPath}
     id: nested-hello-task
-    repository: test-automation-generic-local
+    repository: ${IN_taskRepo}
     input:
       target: "parent execution"
 

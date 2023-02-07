@@ -28,7 +28,7 @@ pipelines:
         execution:
           onStart:
             - mkdir -p "$step_tmp_dir/task"
-            - cp -r ${S_Bash_Tasks_9910_04_repo_resourcePath}/tests/tasks/hello/* $step_tmp_dir/task/
+            - cp -r ${res_S_Bash_Tasks_9910_04_repo_resourcePath}/tests/tasks/hello/* $step_tmp_dir/task/
             - cd $step_tmp_dir/
             - jf rt u "task/*" "test-automation-tasks-local/jfrog/hello/@v/${taskVersion}.zip" --archive zip
           onExecute:

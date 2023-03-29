@@ -2,15 +2,15 @@ GitHub:
   Org_test_Automation:
     path: kunal-mazumdar/Org_test_Automation
   Org_test_Automation_bash:
-    path: jfbetapipeorg/Org_test_Automation_bash
+    path: kunal-mazumdar/Org_test_Automation_bash
   Org_test_Automation_PowerShell:
-    path: jfbetapipeorg/Org_test_Automation_PowerShell
+    path: kunal-mazumdar/Org_test_Automation_PowerShell
   Org_test_Automation_Webhooks:
-      path: jfbetapipeorg/Org_test_Automation_Webhooks
+      path: kunal-mazumdar/Org_test_Automation_Webhooks
 
 GitHubEnterprise:
   Org_test_Automation:
-    path: jfbetapipeorg/Org_test_Automation
+    path: kunal-mazumdar/Org_test_Automation
   test_automation:
     path: jfbeta/test_automation
 
